@@ -1,0 +1,103 @@
+@import url('bootstrap.css');
+
+body{
+	font-size: 16px;
+	font-family: 'Montserrat', 'Arial', sans-serif;
+}
+
+a{
+	color:inherit;
+}
+
+.page-header{
+	height: 80px;
+	background-color: #252525;
+	color: #fff;
+}
+
+.page-header__logo{
+	
+}
+
+.table{
+	border-collapse: collapse;
+}
+
+.table__cell{
+	padding: 0.2em;
+	border: 1px solid #000;
+	text-align: center;
+	vertical-align: middle;
+	box-sizing: border-box;
+	position: relative;
+	min-width: 34px;
+}
+
+.table__cell:hover .table__popup{
+	visibility: visible;
+	opacity: 1;
+}
+
+.table__header{
+	padding: 1em;
+	border: 1px solid #000;
+	text-align: center;
+	font-weight: bold;
+}
+
+.table__win{
+	color: green;
+	margin-right: 0.1em;
+}
+
+.table__lose{
+	color: red;
+}
+
+.table__popup{
+	transition: 0.2s;
+	position: absolute;
+	z-index: 10;
+	visibility: hidden;
+	opacity: 0;
+	background-color: #f0f0f0;
+	padding: 0.7em;
+	padding-left: 45px;
+	border-radius: 10px;
+	border-top-left-radius: 0;
+	box-shadow: 0 0 1px 1px rgba(0,0,0,.3);
+	max-height: 15em;
+	overflow-y: auto;
+}
+
+.table__popup-item{
+	padding: 0.1em 0;
+	margin: 0.2em 0;
+	white-space: nowrap;
+}
+
+.table__popup-item_win{
+	background-color: rgba(59,194, 78, .15);
+}
+
+.table__popup-item_lose{
+	background-color: rgba(180, 13, 13, .1);
+}
+
+.table__hero-img{
+	width: 30px;
+	position: absolute;
+	left: 10px;
+}
+
+.table__kill{
+	color: #3bc24e;
+}
+
+.table__death{
+	color: #ff0b28;
+}
+
+.table__assist{
+	color: #e0a507;
+}
