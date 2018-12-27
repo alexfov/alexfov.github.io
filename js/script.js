@@ -1,17 +1,3 @@
-document.addEventListener('DOMContentLoaded', main);
-
-function main(){
-	var lineDrawing = anime({
-	  targets: '#lineDrawing .lines path',
-	  strokeDashoffset: [anime.setDashoffset, 0],
-	  easing: 'easeInOutSine',
-	  duration: 700,
-	  delay: function(el, i) { return i * 60 },
-	  direction: 'alternate',
-	  loop: false
-	});
-}
-
 let players = {
 	Neeeeeerf: 102756891,
 	JohnGalt: 41528404,
