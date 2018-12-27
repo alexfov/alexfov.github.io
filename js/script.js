@@ -43,7 +43,6 @@ for(let hero in heroes){
 
 function binSearch(arr, toFind, year){
 	if (!arr) return null;
-	if(toFind.toString().length === 1) toFind = '0' + toFind;
 	var first = 0;
 	var last = arr.length - 1;
 	var date;
@@ -92,7 +91,13 @@ function printHeroName (game){
 
 function convertDate (date){
 	date = new Date(+(date + '000'));
-	date = date.toLocaleDateString().split('.');
+	let day = date.getDate().toString();
+	let month = (date.getMonth() + 1).toString();
+	let year = date.getFullYear().toString();
+	if(day.length < 2) day = '0' + day;
+	if(month.length < 2) month = '0' + month;
+
+	date = [day, month, year];
 	return date;
 }
 
