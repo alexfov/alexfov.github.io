@@ -14,7 +14,7 @@ a {
     text-decoration: none;
     color: inherit; }
 
-.lines {
+.animate {
   animation: heading-anime 1.5s 1.5s forwards; }
 
 .heading-container {
@@ -54,12 +54,16 @@ a {
       transition: 0.3s; }
     .main-menu__item_bold {
       font-weight: bold; }
+  .main-menu__link {
+    height: 80px; }
 
 .content {
   min-height: 1080px;
+  background-color: #7298a5;
   background-image: url("../img/bg1_1.jpg");
   background-size: cover;
-  overflow: auto; }
+  overflow-x: auto;
+  position: relative; }
   .content__title {
     color: #fff;
     text-align: center;
@@ -70,7 +74,10 @@ a {
 .table {
   margin-top: 20px;
   border-collapse: collapse;
-  background-color: rgba(255, 255, 255, 0.8); }
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5); }
+  .table__row_border-bold {
+    border-bottom: 2px solid #000; }
   .table__cell {
     padding: 0;
     border: 1px solid #000;
@@ -79,9 +86,19 @@ a {
     box-sizing: border-box;
     position: relative;
     min-width: 30px; }
+    .table__cell_win {
+      color: green; }
+    .table__cell_lose {
+      color: red; }
+    .table__cell_bold {
+      font-weight: bold; }
     .table__cell:hover .table__popup {
       visibility: visible;
       opacity: 1; }
+    .table__cell:nth-of-type(32) {
+      border-right: 2px solid #000; }
+    .table__cell:nth-of-type(34) {
+      border-right: 2px solid #000; }
   .table__header {
     padding: 1em;
     border: 1px solid #000;
@@ -93,6 +110,8 @@ a {
   .table__lose {
     color: red; }
   .table__popup {
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+    font-weight: normal;
     transition: 0.2s;
     position: absolute;
     z-index: 10;
@@ -100,7 +119,7 @@ a {
     opacity: 0;
     background-color: #f0f0f0;
     padding: 0.7em;
-    padding-left: 45px;
+    padding-left: 49px;
     border-radius: 10px;
     border-top-left-radius: 0;
     box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.3);
@@ -108,22 +127,31 @@ a {
     overflow-y: auto; }
     .table__popup-item {
       line-height: 1.2;
+      padding: 0 0.2em;
       margin: 0.2em 0;
       white-space: nowrap; }
       .table__popup-item_win {
-        background-color: rgba(59, 194, 78, 0.15); }
+        background-color: rgba(59, 194, 78, 0.3); }
       .table__popup-item_lose {
-        background-color: rgba(180, 13, 13, 0.1); }
+        background-color: rgba(180, 13, 13, 0.25); }
   .table__hero-img {
-    width: 30px;
+    width: 34px;
     position: absolute;
-    left: 10px; }
+    left: 10px;
+    border-radius: 2px; }
   .table__kill {
     color: #3bc24e; }
   .table__death {
     color: #ff0b28; }
   .table__assist {
     color: #e0a507; }
+
+.select {
+  border: none;
+  cursor: pointer;
+  height: 2.4em;
+  padding: 0 0.2em;
+  border-radius: 5px; }
 
 .page-footer {
   background-color: #282836;
@@ -137,5 +165,10 @@ a {
   .footer-menu__item:hover a {
     color: #bebebe;
     transition: 0.3s; }
+
+.div {
+  height: 500px;
+  width: 100%;
+  background-image: url("../img/111.svg#cancers"); }
 
 /*# sourceMappingURL=main.css.map */
