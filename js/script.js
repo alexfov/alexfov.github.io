@@ -101,10 +101,12 @@ function map (array, month, year){
 	}
 	//поиск назад по массиву
 	count = -1;
-	while (convertDate(array[i + count].start_time)[1] == +month) {
-		arr.unshift(new PlayerStats(array[i + count]));
-		count--
-		if(i + count < 0) break;
+	if(array[i + count] != undefined){
+		while (convertDate(array[i + count].start_time)[1] == +month) {
+			arr.unshift(new PlayerStats(array[i + count]));
+			count--
+			if(i + count < 0) break;
+		}
 	}
 	return arr;
 }
@@ -269,7 +271,6 @@ function drawTable (x, month, year){
 }
 
 let today = new Date();
-drawTable(31, today.getMonth() + 1, today.getFullYear());
 
 function drawSelectYear (){
 	let select_year = document.querySelector('.select-year');
@@ -280,7 +281,8 @@ function drawSelectYear (){
 	}
 }
 
-drawSelectYear()
+drawSelectYear();
+drawTable(31, today.getMonth() + 1, today.getFullYear());
 
 let btn = document.querySelector('.btn');
 
