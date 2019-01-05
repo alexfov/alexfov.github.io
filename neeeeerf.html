@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>Neeeeeerf</title>
+	<link rel="stylesheet" href="css/main.css">
+						<style>
+				    .polyline__point{
+				      stroke-width: 2px;
+				      stroke: #000;
+				      fill: yellow;
+				      stroke-miterlimit:10;
+				    }
+
+				    .st0{
+				      fill:none;
+				      stroke: #000000;
+				      stroke-width: 2px;
+				    }
+				    .lines__axis{
+				    	stroke: #000;
+				    	stroke-width: 2;
+				    }
+				    .lines__hor-line{
+				    	stroke: rgba(0,0,0,.3);
+				    	stroke-width: 1;
+				    }
+				    .text__item{
+				    	fill: #000;
+				    	font-size: 1.1em;
+				    }
+				    .svg-container{
+				    	margin-top: 100px; 
+				      background-color: rgba(255,255,255,1);
+				      position: relative;
+				    }
+				    .shadow{
+				    	filter: url(#dropShadow);
+				    }
+				    .svg-popup{
+				    	background-color: #fff;
+				    	border: 1px solid red;
+				    	position: absolute;
+				    	display: none;
+				    	padding: 5px 10px;
+				    }
+				    .popup-table__img{
+				    	height: 1.2em;
+				    }
+				  </style>
+	<script src="js/common_functions.js"></script>
+</head>
+<body>
+	<header class="page-header">
+		<div class="container">
+			<div class="row">
+				<div class="col-11">
+					<nav class="main-nav">
+						<ul class="main-menu nav">
+							<li class="main-menu__item main-menu__item_bold"><a href="https://www.dotabuff.com/" class="main-menu__link">DOTABUFF</a></li>
+							<li class="main-menu__item"><a href="neeeeerf.html" class="main-menu__link">Neeeeeef</a></li>
+							<li class="main-menu__item"><a href="https://www.dotabuff.com/players/41528404" class="main-menu__link">JohnGalt</a></li>
+							<li class="main-menu__item"><a href="https://www.dotabuff.com/players/313885294" class="main-menu__link">AlexFov</a></li>
+							<li class="main-menu__item"><a href="https://www.dotabuff.com/players/120491980" class="main-menu__link">BloOdTerrOr</a></li>
+							<li class="main-menu__item"><a href="https://www.dotabuff.com/players/84502939" class="main-menu__link">Megabit</a></li>
+							<li class="main-menu__item"><a href="https://www.dotabuff.com/players/254920273" class="main-menu__link">Doctor</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="col-1">
+					<a href="index.html"><img src="img/cancer.svg" alt="logo" class="page-header__logo"></a>
+				</div>
+			</div>
+		</div>
+	</header>
+	<section class="content">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="svg-container">
+						<svg class='svg' xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 500">
+							 <filter id="dropShadow">
+						     <feGaussianBlur in="SourceAlpha" stdDeviation="4" />
+						     <feOffset dx="8" dy="8" />
+						     <feMerge>
+						       <feMergeNode />
+						       <feMergeNode in="SourceGraphic" />
+						     </feMerge>
+						  </filter>
+							<g class="shadow">
+								<line class="lines__axis" x1="25" y1="25" x2="25" y2="475" />
+								<line class="lines__axis" x1="25" y1="475" x2="975" y2="475" />
+								<g class="text">
+									<text x="30" y="30" class="text__item"></text>
+									<text x="30" y="140" class="text__item"></text>
+									<text x="30" y="250" class="text__item"></text>
+									<text x="30" y="360" class="text__item"></text>
+									<text x="30" y="470" class="text__item"></text>
+								</g>
+							  <polyline class="st0" points="44,467 191,467 316,467 448,467 556,467 666,467 758,467 842,467 948,467 "/>
+							 </g>
+							 <g class="lines">
+							  <line class="lines__hor-line" x1="15" y1="35" x2="985" y2="35" />
+								<line class="lines__hor-line" x1="15" y1="145" x2="985" y2="145" />
+								<line class="lines__hor-line" x1="15" y1="255" x2="985" y2="255" />
+								<line class="lines__hor-line" x1="15" y1="365" x2="985" y2="365" />
+							</g>
+						</svg>
+						<div class="svg-popup">
+							<table class="popup-table">
+								<tr class="popup-table__row">
+									<td class="popup-table__cell">Игр сыграно:</td>
+									<td class="popup-table__cell popup-table__games popup-table__set-data"></td>
+								</tr>
+								<tr class="popup-table__row">
+									<td class="popup-table__cell">Винрейт:</td>
+									<td class="popup-table__cell popup-table__wr popup-table__set-data"></td>
+								</tr>
+								<tr class="popup-table__row">
+									<td class="popup-table__cell">Любимый герой:</td>
+									<td class="popup-table__cell popup-table__favourite-hero popup-table__set-data"></td>
+								</tr>
+								<tr class="popup-table__row">
+									<td class="popup-table__cell">Лучший герой:</td>
+									<td class="popup-table__cell popup-table__best-hero popup-table__set-data"></td>
+								</tr>
+								<tr class="popup-table__row">
+									<td class="popup-table__cell">Худший герой:</td>
+									<td class="popup-table__cell popup-table__worst-hero popup-table__set-data"></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<footer class="page-footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-3">
+					<img src="img/cancer.svg" alt="logo" class="page-footer__logo">
+				</div>
+				<div class="col-2">
+					<nav class="footer-nav">
+						<ul class="footer-menu nav flex-column">
+							<li class="footer-menu__item main-menu__item_bold pl-0"><a href="https://www.dotabuff.com/" class="main-menu__link">DOTABUFF</a></li>
+							<li class="footer-menu__item"><a href="https://www.dotabuff.com/players/102756891" class="main-menu__link">Neeeeeef</a></li>
+							<li class="footer-menu__item"><a href="https://www.dotabuff.com/players/41528404" class="main-menu__link">JohnGalt</a></li>
+							<li class="footer-menu__item"><a href="https://www.dotabuff.com/players/313885294" class="main-menu__link">AlexFov</a></li>
+							<li class="footer-menu__item"><a href="https://www.dotabuff.com/players/120491980" class="main-menu__link">BloOdTerrOr</a></li>
+							<li class="footer-menu__item"><a href="https://www.dotabuff.com/players/84502939" class="main-menu__link">Megabit</a></li>
+							<li class="footer-menu__item"><a href="https://www.dotabuff.com/players/254920273" class="main-menu__link">Doctor</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<script src="js/neeeeerf/nerf_script.js"></script>
+	<script src="js/draw_graph.js"></script>
+</body>
+</html>

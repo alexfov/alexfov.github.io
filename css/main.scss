@@ -3,6 +3,8 @@ $header_bg: #252525;
 $footer_bg: #282836;
 $menu-hover-color: #4b3d59;
 
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
 @keyframes heading-anime{
 	from{
 		fill: transparent;
@@ -26,7 +28,7 @@ a{
 	}
 }
 
-.lines{
+.animate{
 	animation: heading-anime 1.5s 1.5s forwards;	
 }
 
@@ -80,14 +82,17 @@ a{
 	}
 
 	&__link{
-		
+		height: 80px;
 	}
 }
 
 .content{
 	min-height: 1080px; 
-	background-image: url('../img/bg1.jpg');
+	background-color: #7298a5;
+	background-image: url('../img/bg1_1.jpg');
 	background-size: cover;
+	overflow-x: auto;
+	position: relative;
 
 	&__title{
 		color: #fff;
@@ -102,6 +107,11 @@ a{
 	margin-top: 20px;
 	border-collapse: collapse;
 	background-color: rgba(255,255,255,.8);
+	box-shadow: 5px 5px 5px rgba(0,0,0,.5);
+
+	&__row_border-bold{
+		border-bottom: 2px solid #000;
+	}
 
 	&__cell{
 	padding: 0;
@@ -112,9 +122,29 @@ a{
 	position: relative;
 	min-width: 30px;
 
+		&_win{
+			color: green;
+		}
+
+		&_lose{
+			color: red;
+		}
+
+		&_bold{
+			font-weight: bold;
+		}
+
 		&:hover .table__popup{
 			visibility: visible;
 			opacity: 1;
+		}
+
+		&:nth-of-type(32){
+			border-right: 2px solid #000;
+		}
+
+		&:nth-of-type(34){
+			border-right: 2px solid #000;
 		}
 	}
 
@@ -135,6 +165,8 @@ a{
 	}
 
 	&__popup{
+		text-shadow: 1px 1px 1px rgba(0,0,0,.4);
+		font-weight: normal;
 		transition: 0.2s;
 		position: absolute;
 		z-index: 10;
@@ -142,7 +174,7 @@ a{
 		opacity: 0;
 		background-color: #f0f0f0;
 		padding: 0.7em;
-		padding-left: 45px;
+		padding-left: 49px;
 		border-radius: 10px;
 		border-top-left-radius: 0;
 		box-shadow: 0 0 1px 1px rgba(0,0,0,.3);
@@ -150,25 +182,26 @@ a{
 		overflow-y: auto;
 
 		&-item{
-			padding: 0.1em 0;
+			line-height: 1.2;
+			padding: 0 0.2em;
 			margin: 0.2em 0;
 			white-space: nowrap;
 
 			&_win{
-				background-color: rgba(59,194, 78, .15);
+				background-color: rgba(59, 194, 78, .3);
 			}
 
 			&_lose{
-				background-color: rgba(180, 13, 13, .1);
+				background-color: rgba(180, 13, 13, .25);
 			}
 		}
 	}
 
-
 	&__hero-img{
-		width: 30px;
+		width: 34px;
 		position: absolute;
 		left: 10px;
+		border-radius: 2px;
 	}
 
 	&__kill{
@@ -184,10 +217,18 @@ a{
 	}
 }
 
+.select{
+	border: none;
+	cursor: pointer;
+	height: 2.4em;
+	padding: 0 0.2em;
+	border-radius: 5px;
+}
+
 .page-footer{
 	background-color: $footer_bg;
 	color: #fafafa;
-
+	
 	&__logo{
 		max-width: 225px;
 	}
@@ -203,4 +244,10 @@ a{
 			transition: 0.3s;
 		}
 	}
+}
+
+.div{
+	height: 500px;
+	width: 100%;
+	background-image: url('../img/111.svg#cancers');
 }
