@@ -11,3 +11,4 @@ for(let hero in heroes){
 
 let last_year_games = foldArray(games).reverse();
 let player_year_stats = new PopupData(last_year_games);
+

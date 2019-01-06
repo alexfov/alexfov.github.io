@@ -138,10 +138,11 @@ function rebuildGraph (svg_class, new_points, speed){
     if(a < b) a = b;
     return Math.ceil(a / 10) * 10;
   });
+
   //set values on lines
   text_item.forEach((x, i, y) => x.textContent = ~~(new_points_max - new_points_max / (y.length - 1) * i));
 
-  new_points = new_points.map((x, i) => [polyline_nodes[i][0], 450 - ~~(x / new_points_max * 415)]);
+  new_points = new_points.map((x, i) => [polyline_nodes[i][0], Math.round(475 - (x / new_points_max * 440))]);
   let difference = [];
   new_points.forEach((x, i) => difference.push(polyline_nodes[i][1] - x[1]));
 
@@ -165,7 +166,7 @@ function rebuildGraph (svg_class, new_points, speed){
   function draw (i, progress) {
     new_nodes[i][1] = polyline_nodes[i][1];
     new_nodes[i][1] -= ~~(difference[i] * progress);
-
+    console.log(new_nodes[i][1])
     polyline.setAttribute('points', new_nodes);
     circles[i].setAttribute('cy', new_nodes[i][1]);
   }
@@ -174,14 +175,11 @@ function rebuildGraph (svg_class, new_points, speed){
     let cur_node = polyline_nodes[i][1];
     requestAnimationFrame(function animate (time) {
       let time_fraction = Math.abs((-cur_node + new_points[i][1] + difference[i]) / difference[i]);
+      if(time_fraction > 1) time_fraction = 1;
       cur_node -= speed;
       let progress = EasingFunctions.easeInOutQuart(time_fraction);
       draw(i, progress);
-      if(time_fraction > 1){
-        time_fraction = 1;
-        draw(i, time_fraction);
-        return;
-      }
+      if(time_fraction >= 1) return
       requestAnimationFrame(animate);
     })
   }

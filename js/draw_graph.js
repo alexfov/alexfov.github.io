@@ -12,11 +12,17 @@ function drawGraph (player){
 
   let btn_games = document.querySelector('.graph-btns__games');
   let btn_wr = document.querySelector('.graph-btns__wr');
+  let line_wr = document.querySelector('.svg-graph__line_wr');
+  let max_axis_value = document.querySelector('.text__item_max');
 
   btn_games.addEventListener('click', function () {
     if(!this.classList.contains('active')){
       let new_points = last_year_games.map(x => x.length);
       rebuildGraph('svg-graph', new_points, 5);
+
+      line_wr.setAttribute('y1', 0);
+      line_wr.setAttribute('y2', 0);
+
       btn_wr.classList.remove('active');
       btn_games.classList.add('active');
     }
@@ -26,6 +32,11 @@ function drawGraph (player){
     if(!this.classList.contains('active')){
       let new_points = player_year_stats.wr
       rebuildGraph('svg-graph', new_points, 5);
+
+      let wr_line_pos = 475 - 440 / max_axis_value.textContent * 50;
+      line_wr.setAttribute('y1', wr_line_pos);
+      line_wr.setAttribute('y2', wr_line_pos);
+
       btn_wr.classList.add('active');
       btn_games.classList.remove('active');
     }
