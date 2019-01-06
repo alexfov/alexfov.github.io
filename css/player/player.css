@@ -1,0 +1,77 @@
+.graph-btns {
+  margin-top: 150px; }
+
+.svg-container {
+  margin-top: 10px;
+  background-color: rgba(255, 255, 255, 0.7);
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.7); }
+
+.svg-graph__polyline__point {
+  stroke-width: 2;
+  stroke: #000;
+  fill: yellow;
+  stroke-miterlimit: 10; }
+.svg-graph__function {
+  fill: none;
+  stroke: #000;
+  stroke-width: 2; }
+.svg-graph__axis {
+  stroke: #000;
+  stroke-width: 2; }
+.svg-graph__lines {
+  stroke: rgba(0, 0, 0, 0.07);
+  stroke-width: 1; }
+.svg-graph__shadow {
+  filter: url(#dropShadow); }
+
+.text__item {
+  fill: #000;
+  font-size: 1.1em; }
+
+.circles {
+  filter: url(#dropShadow-circles); }
+
+.svg-popup {
+  color: #fff;
+  background-color: #707070;
+  position: absolute;
+  display: none;
+  padding: 5px 10px;
+  border-radius: 10px;
+  border: 1px solid #464646;
+  filter: drop-shadow(8px 8px 4px rgba(0, 0, 0, 0.7)); }
+  .svg-popup__lip {
+    fill: #707070;
+    stroke: #464646;
+    position: absolute;
+    width: 20px;
+    bottom: -14px;
+    left: 50%; }
+
+.popup-table__img {
+  width: 2.2em; }
+.popup-table__cell {
+  white-space: nowrap;
+  padding-left: 8px; }
+.popup-table__row {
+  border-top: 4px solid transparent;
+  background-clip: padding-box;
+  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.2) 2px, rgba(58, 59, 70, 0.1) 0);
+  margin-top: 3px; }
+  .popup-table__row_date {
+    text-align: center;
+    font-weight: bold; }
+  .popup-table__row_games {
+    color: Khaki; }
+  .popup-table__row_wr {
+    color: Wheat; }
+  .popup-table__row_favourite-hero {
+    color: Gold; }
+  .popup-table__row_best-hero {
+    color: yellowgreen; }
+  .popup-table__row_worst-hero {
+    color: LightCoral; }
+
+/*# sourceMappingURL=player.css.map */
