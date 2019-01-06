@@ -23,6 +23,8 @@
 .svg-graph__lines {
   stroke: rgba(0, 0, 0, 0.07);
   stroke-width: 1; }
+.svg-graph__line_wr {
+  stroke: green; }
 .svg-graph__shadow {
   filter: url(#dropShadow); }
 
