@@ -1,16 +1,5 @@
 'use strict';
-
-let players = {
-	Neeeeeerf: 102756891,
-	JohnGalt: 41528404,
-	AlexFov: 313885294,
-	Doctor: 254920273,
-	Megabit: 84502939,
-	BloOdTerrOr: 120491980
-};
-
-let monthes = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
-let request = new XMLHttpRequest();
+const request = new XMLHttpRequest();
 
 const games = {};
 for (let key in players){

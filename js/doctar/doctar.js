@@ -1,6 +1,6 @@
 'use strict';
 
-const player = ['Neeeeeerf', 102756891];
+const player = ['Doctor', 254920273];
 const games = JSON.parse(localStorage.getItem(`games_${player[0]}`)) || player_request('player');
 const heroes = JSON.parse(localStorage.getItem(`heroes`)) || player_request();
 
