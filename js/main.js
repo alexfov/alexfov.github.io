@@ -1,23 +1,40 @@
 'use strict';
-const request = new XMLHttpRequest();
 
 const games = {};
 for (let key in players){
-	request.open('GET', `https://api.opendota.com/api/players/${players[key]}/matches`, false);
+	const request = new XMLHttpRequest();
+	request.open('GET', `https://api.opendota.com/api/players/${players[key]}/matches`, true);
 	request.send();
-	localStorage.setItem(`games_${key}`, request.responseText);
-	games[key] = JSON.parse(request.responseText);
+	request.onreadystatechange = function(){
+		if(request.readyState != 4) return;
+		localStorage.setItem(`games_${key}`, request.responseText);
+		games[key] = JSON.parse(request.responseText);
+		if(Object.keys(games).length === Object.keys(players).length && isHeroesRequestDone){
+			drawTable(31, today.getMonth() + 1, today.getFullYear());
+		}
+	} 
 }
-// --------------HEROES ---------------//
-		request.open('GET', `https://api.opendota.com/api/heroes`, false);
-		request.send();
+
+//--------------HEROES ---------------//
+const heroes_img = {};
+let heroes = [];
+var isHeroesRequestDone = false;
+(function (){
+	const request = new XMLHttpRequest();
+	request.open('GET', `https://api.opendota.com/api/heroes`, true);
+	request.send();
+
+	request.onreadystatechange = function(){
+		if(request.readyState != 4) return;
 		localStorage.setItem(`heroes`, request.responseText);
-let heroes = JSON.parse(request.responseText);
-let heroes_img = {};
-//make hero img Map
-for(let hero in heroes){
-	heroes_img[heroes[hero]['localized_name']] = `https://api.opendota.com/apps/dota2/images/heroes/${heroes[hero].name.replace('npc_dota_hero_', '')}_full.png?`
-}
+		heroes = JSON.parse(request.responseText);
+		//make hero img Map
+		for(let hero in heroes){
+			heroes_img[heroes[hero]['localized_name']] = `https://api.opendota.com/apps/dota2/images/heroes/${heroes[hero].name.replace('npc_dota_hero_', '')}_full.png?`
+		}
+		isHeroesRequestDone = true;
+	}
+})();
 //------------------------------------//
 
 let table_body = document.querySelector('.table__body');
@@ -184,7 +201,7 @@ function drawSelectYear (){
 }
 
 drawSelectYear();
-drawTable(31, today.getMonth() + 1, today.getFullYear());
+// drawTable(31, today.getMonth() + 1, today.getFullYear());
 
 let btn = document.querySelector('.btn');
 
