@@ -317,7 +317,7 @@ class Slider{
 	
 		let timer = 1000; // задержка перед анимацией
 		let build_task = (index) => {
-			if(index === 1){ //this.animals.length - 1 все вопросы отвечены
+			if(index === this.animals.length - 1){ //this.animals.length - 1 все вопросы отвечены
 				let prize = count_result(answers); //вызов функции расчета приза
 				result.addClass('result_active'); //отображение результата		
 				//зажечь 1 звезду. Сработает всегда - минимальная награда	
@@ -439,7 +439,7 @@ class Slider{
 			for(const tag of balloons){
 				const $tag = $(tag);
 				const parent = $tag.parent()
-				if($tag.prop('tagName') === 'use'){
+				if($tag.prop('tagName') === 'use' && !parent.hasClass('result__star')){
 					//анимация взрыва
 					parent.html('<image href="img/boom.svg" class="balloon__boom"/>')
 								.css('filter', 'none');
@@ -453,7 +453,9 @@ class Slider{
 				}
 			}
 			//условие завершения игры и очистки контейнера
-			//таймаут т.к. лопнутый шар исчезает через 200мс (281стр);
+			//условие, чтобы игра не заканчивалсь до появления шаров
+			if(result.children().length === 3) return
+			//таймаут т.к. лопнутый шар исчезает через 200мс;
 			setTimeout(() => {
 				//3 svg звезды скрыты, поэтому 4 в условии
 				if(result.children().length < 4){ 
@@ -461,14 +463,14 @@ class Slider{
 					if(!this_game_node.hasClass('active'))
 						this_game_node.css('animation', 'none');
 					setTimeout(() => {
-						this_game_node.css('animation', 'hinge 2s').addClass('active');
+						this_game_node.css('animation', 'zoomOutDown 2s').addClass('active');
 					}, 20);
 					//очистка по окончанию анимации
 					setTimeout(() => {
 						this_game_node.html('').removeClass('active');
 					}, 2000);
 				}
-			}, 7000);
+			}, 230);
 		});
 	}
 }
