@@ -5,32 +5,16 @@ class MoveSVG{
     this.node = node;
     this.initital_params = [this.x, this.y];
   }
-  setNewParams(new_params, anim_time){
-    const obj = this;
-    const cur_params = [this.x, this.y];
-    const diff = cur_params.map((cur_elem, i) => new_params[i] - cur_elem);
-    this.diff = diff;
-    let start = performance.now();
-    let timing_fn = function (t) { return t<.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t };
-
-    requestAnimationFrame(function animate () {
-      let time_fraction = (performance.now() - start) / anim_time;
-      if(time_fraction > 1) time_fraction = 1;
-      let progress = timing_fn(time_fraction);
-
-      obj.x = cur_params[0] + diff[0] * progress;
-      obj.y = cur_params[1] + diff[1] * progress;
-
-      obj.node.setAttribute('cx', obj.x);
-      obj.node.setAttribute('cy', obj.y);
-
-      if(time_fraction === 1) return;
-      requestAnimationFrame(animate);
-    });
+  setNewParams(new_params){
+    this.x = new_params[0];
+    this.y = new_params[1];
+    this.node.setAttribute('cx', new_params[0]);
+    this.node.setAttribute('cy', new_params[1]);
+    return this;
   }
 
-  returnInitital(time){
-    this.setNewParams(this.initital_params, time);
+  returnInitital(){
+    this.setNewParams(this.initital_params);
   }
 }
 
@@ -64,7 +48,7 @@ $('input, select').on('input', function (evt) {
     if(excess > 0) direction = -1;
     if(excess < 0) direction = 1;
 
-    circle.setNewParams([825,255 - 55 * direction], 0); //меняем положение колодца в свг
+    circle.setNewParams([825,255 - 55 * direction]); //меняем положение колодца в свг
     let cur_incline = Math.abs(excess / distance.val()) * 1000; //текущий уклон
 
     let dist1 = (+distance.val() + Math.abs(excess) / (incline.val() / 1000)) / 2;
@@ -84,21 +68,23 @@ $('input, select').on('input', function (evt) {
     let watershed = dist1 * useIncline / 1000 + +lk_1.val(); //отметка водораздела
     let watershedYpos = 205 - 20 * direction; //Высота водор. на СВГ
     const watershed_xPos = xScale * dist1; // положение водораздела в свг
-    // $('.watershed title').text((Math.round(watershed * accuracy) / accuracy).toFixed(accuracy.length - 1));
-    $('.watershed').attr('title', (Math.round(watershed * accuracy) / accuracy).toFixed(accuracy.length - 1));
-    $('.LK-1').attr('title', (Math.round(lk_1.val() * accuracy) / accuracy).toFixed(accuracy.length - 1));
-    $('.LK-2').attr('title', (Math.round(lk_2.val() * accuracy) / accuracy).toFixed(accuracy.length - 1));
-
+    //добавить текст с отметкой для водораздела, если есть.
+    if(dist1 !=0 && dist2 !=0){
+      const watershed_text = createSVG('text', 150 + watershed_xPos, watershedYpos, watershed);
+      interp_container[0].appendChild(watershed_text);
+    }
+    
     //---------------------интерполяция------------------------
     $('.result-interp').html(''); //очистка таблиц с интерполяцией
     let interp_data =  ''; // таблица интерполяции
-    [dist1, dist2].forEach(function(x, ind){ 
-      if(x <= +interp.val()) return; //выходим, если интерполировать нечего
-      const count = Math.ceil(x / interp.val()); //число уч.
-      const dist = x / count; //длина уч.
+    [dist1, dist2].forEach(function(sector, ind){ 
+      if(sector <= +interp.val()) return; //выходим, если интерполировать нечего
+      const count = Math.ceil(sector / interp.val()); //число уч.
+      const dist = sector / count; //длина уч.
 
       //заголовок таблицы
       interp_data += `<tr><th colspan=3>LK-${ind + 1}</th></tr>`;
+      //тело таблицы
       for (let i = 1; i < count; i++) {
         let interp_mark = ind === 0 ? +lk_1.val() + dist * i * useIncline / 1000 : +lk_2.val() + dist * i * useIncline / 1000;
         interp_data += 
@@ -108,21 +94,25 @@ $('input, select').on('input', function (evt) {
           <td>${Math.round(interp_mark * accuracy) / accuracy}</td>
         </tr>`;
 
-        const circle_interp = createSVG();
-        circle_interp.setAttribute('title', (Math.round(interp_mark * accuracy) / accuracy).toFixed(accuracy.length - 1));
-        if(ind === 0){
+        //данные для второго уч.
+        if(dist1 == 0) watershedYpos = 255;
+        let interpYPos = 255 - 55 * direction - (255 - 55 * direction - watershedYpos) / count * i;
+        let interpXPos = 825 - dist * i * xScale;
+
+        if(ind === 0){ //данные для первого уч.
           if(dist1 === distance.val()) watershedYpos = 200;
-          let interpYPos = 255 - (255 - watershedYpos) / count * i;
-          circle_interp.setAttribute('cx', 150 + dist * i * xScale);
-          circle_interp.setAttribute('cy', interpYPos );
+          interpYPos = 255 - (255 - watershedYpos) / count * i;
+          interpXPos = 150 + dist * i * xScale;
         }
-        else{
-          if(dist1 == 0) watershedYpos = 255;
-          let interpYPos = 255 - 55 * direction - (255 - 55 * direction - watershedYpos) / count * i;
-          circle_interp.setAttribute('cx', 825 - dist * i * xScale);
-          circle_interp.setAttribute('cy', interpYPos );
-        }
+        //интерп. точка на графике
+        const circle_interp = createSVG('circle');
+        circle_interp.setAttribute('cx', interpXPos);
+        circle_interp.setAttribute('cy', interpYPos );
+        //интерп. отметка на графике
+        const text_mark = createSVG('text', interpXPos, interpYPos, interp_mark);
+
         interp_container[0].appendChild(circle_interp);
+        interp_container[0].appendChild(text_mark);
       }
     });
 
@@ -142,8 +132,13 @@ $('input, select').on('input', function (evt) {
     //---------------------конец отрисовки таблицы--------------------------
 
     //---------------------перемещение водораздела--------------------------
+    const lk_1_text_mark = createSVG('text', 150, 255, lk_1.val());
+    const lk_2_text_mark = createSVG('text', 825, circle.y, lk_2.val());
+    interp_container[0].appendChild(lk_1_text_mark);
+    interp_container[0].appendChild(lk_2_text_mark);
+
     setTimeout(() => {
-      $('.svg-graph__function').attr('points', `150,255 ${150 + watershed_xPos},${watershedYpos} ${circle.x},${circle.y}`);
+      $('.svg-graph__function').attr('points', `150,255 ${150 + watershed_xPos},${watershedYpos} 825,${circle.y}`);
       $('.watershed').attr({'cx': 150 + watershed_xPos, 'cy': watershedYpos})
     }, 20);
     //---------------------конец перемещения водораздела--------------------------  
@@ -160,18 +155,25 @@ $('body').on('click', function (evt) {
     $('.voda-form__info i').removeClass('active');
 });
 
-function createSVG(tag = 'circle'){
-  const elem = document.createElementNS('http://www.w3.org/2000/svg', tag);
-  if(tag === 'circle'){
-    elem.setAttribute('r', '15');
-    elem.classList.add('circle_interp')
-  }
-  return elem;
-}
-
 $('.svg-container__fold').on('click', function (evt) {
   this.classList.toggle('svg-container__fold_active');
   this.parentNode.classList.toggle('svg-container_folded');
 });
 
 $(document).tooltip();
+
+function createSVG(tag = 'circle', x, y, z){
+  const elem = document.createElementNS('http://www.w3.org/2000/svg', tag);
+  if(tag === 'circle'){
+    elem.setAttribute('r', '11');
+    elem.classList.add('circle_interp')
+  }
+  if(tag === 'text'){
+    const accuracy = accuracy_el.val();
+    elem.textContent = (Math.round(z * accuracy) / accuracy).toFixed(accuracy.length - 1);
+    elem.classList.add('function__text-mark');
+    elem.setAttribute('x', x - 20);
+    elem.setAttribute('y', y - 30);
+  }
+  return elem;
+}

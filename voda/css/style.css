@@ -23,6 +23,8 @@ main {
   transition: 0.4s; }
   .svg-container_folded {
     height: 32px; }
+  .svg-container_folded .svg-graph {
+    display: none; }
   .svg-container__fold {
     width: 20px;
     height: 20px;
@@ -101,10 +103,12 @@ main {
       content: '';
       display: table;
       clear: both; }
-  .voda-form__LK-1 {
-    float: left; }
-  .voda-form__LK-2 {
-    float: right; }
+  .voda-form__LK {
+    margin-right: 10px; }
+    .voda-form__LK-1 {
+      float: left; }
+    .voda-form__LK-2 {
+      float: right; }
   .voda-form__info {
     display: inline-block;
     background-color: rgba(0, 0, 0, 0.2);
@@ -130,6 +134,9 @@ main {
     .voda-form__info i.active {
       visibility: visible;
       opacity: 1; }
+
+.function__text-mark {
+  font-size: 1.7em; }
 
 input, select {
   width: 70px;
@@ -187,6 +194,9 @@ tr:nth-child(2n-1) {
     font-size: 0.8rem; }
 
   main {
-    width: 90%; } }
+    width: 90%; }
+
+  input, select {
+    width: 55px; } }
 
 /*# sourceMappingURL=style.css.map */
