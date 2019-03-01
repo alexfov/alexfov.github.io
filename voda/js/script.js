@@ -74,8 +74,8 @@ $('input, select').on('input', function (evt) {
     if(dist1 >= distance.val()){
       dist1 = distance.val();
       $('.log').html(
-        `Существующий уклон между колодцами больше искомого: ${Math.round(cur_incline * 10) / 10}‰ <br>
-        Устройство водораздела не требуется`);
+        `Существующий уклон между колодцами больше искомого: <b>${Math.round(cur_incline * 10) / 10}‰ </b> <br>
+        <b>Устройство водораздела не требуется</b>`);
     }
 
     let dist2 = distance.val() - dist1;
@@ -86,7 +86,9 @@ $('input, select').on('input', function (evt) {
     let watershed = dist1 * useIncline / 1000 + +lk_1.val(); //отметка водораздела
     let watershedYpos = 205 - 20 * direction; //Высота водор. на СВГ
     const watershed_xPos = xScale * dist1; // положение водораздела в свг
-    
+    $('.watershed title').text((Math.round(watershed * accuracy) / accuracy).toFixed(accuracy.length - 1));
+    $('.LK-1 title').text((Math.round(lk_1.val() * accuracy) / accuracy).toFixed(accuracy.length - 1));
+    $('.LK-2 title').text((Math.round(lk_2.val() * accuracy) / accuracy).toFixed(accuracy.length - 1));
     //---------------------интерполяция------------------------
     $('.result-interp').html(''); //очистка таблиц с интерполяцией
     let interp_data =  ''; // таблица интерполяции
@@ -106,16 +108,17 @@ $('input, select').on('input', function (evt) {
           <td>${Math.round(interp_mark * accuracy) / accuracy}</td>
         </tr>`;
 
-        const circle_interp = createSVG('circle');
+        const circle_interp = createSVG();
+        const title = createSVG('title');
+        title.textContent = (Math.round(interp_mark * accuracy) / accuracy).toFixed(accuracy.length - 1);
+        circle_interp.appendChild(title);
         if(ind === 0){
-          //положение У статичного колодца №1 255. Положение У водораздела условное : (205 - 20 * direction)
           if(dist1 === distance.val()) watershedYpos = 200;
           let interpYPos = 255 - (255 - watershedYpos) / count * i;
           circle_interp.setAttribute('cx', 150 + dist * i * xScale);
           circle_interp.setAttribute('cy', interpYPos );
         }
         else{
-          //положение У динамичного колодца №2 255 - 55 * direction. Положение У водораздела условное : (205 - 20 * direction)
           if(dist1 == 0) watershedYpos = 255;
           let interpYPos = 255 - 55 * direction - (255 - 55 * direction - watershedYpos) / count * i;
           circle_interp.setAttribute('cx', 825 - dist * i * xScale);
@@ -143,7 +146,7 @@ $('input, select').on('input', function (evt) {
     //---------------------перемещение водораздела--------------------------
     setTimeout(() => {
       $('.svg-graph__function').attr('points', `150,255 ${150 + watershed_xPos},${watershedYpos} ${circle.x},${circle.y}`);
-      $('.watersherd').attr({'cx': 150 + watershed_xPos, 'cy': watershedYpos})
+      $('.watershed').attr({'cx': 150 + watershed_xPos, 'cy': watershedYpos})
     }, 20);
     //---------------------конец перемещения водораздела--------------------------  
   }
@@ -162,8 +165,13 @@ $('body').on('click', function (evt) {
 function createSVG(tag = 'circle'){
   const elem = document.createElementNS('http://www.w3.org/2000/svg', tag);
   if(tag === 'circle'){
-    elem.setAttribute('r', '8');
+    elem.setAttribute('r', '10');
     elem.classList.add('circle_interp')
   }
   return elem;
 }
+
+$('.svg-container__fold').on('click', function (evt) {
+  this.classList.toggle('svg-container__fold_active');
+  this.parentNode.classList.toggle('svg-container_folded');
+})

@@ -26,20 +26,20 @@
       <legend>Расстояние и уклон</legend>
       <div class="float-left">
         <input type="number" name="distance" id="distance" class="distance" value="50" max="100" min="20">
-        <label for="distance">Расстояние</label>
+        <label for="distance">Расст.</label>
       </div>
       <div class="float-right">
-        <label for="incline">Уклон</label>
+        <label for="incline">‰</label>
         <input type="number" name="incline" id="incline" class="incline" value="4" max="10" min="0" step="0.5">
       </div>
     </fieldset>
     <fieldset class="voda-form__fieldset">
       <div class="float-left">
         <input type="number" name="interp" id="interp" class="interp" value="12" min="0.5" step="0.5">
-        <label for="interp">Интерполяция <span class="voda-form__info">?<i>Максимально допустимая длина линии без интерполяции. Если длина 26 и интерполяция 10, то будет получено 2 точки с шагом 8.66. А если интерполяция 13, то будет получена 1 точка посередине.</i></span></label>
+        <label for="interp">Интерп. <span class="voda-form__info">?<i>Максимально допустимая длина линии без интерполяции. Если длина 26 и интерполяция 10, то будет получено 2 точки с шагом 8.66. А если интерполяция 13, то будет получена 1 точка посередине.</i></span></label>
       </div>
       <div class="float-right flex">
-        <label for="accuracy">Точность</label>
+        <label for="accuracy">Точн.</label>
         <select name="accuracy" id="accuracy" class="accuracy">
           <option value="100" selected>.00</option>
           <option value="1000">.000</option>
@@ -48,17 +48,10 @@
     </fieldset>
   </form>
   <div class="svg-container">
+    <div class="svg-container__fold"></div>
     <svg class="svg-graph" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500">
        <filter id="dropShadow">
          <feGaussianBlur in="SourceAlpha" stdDeviation="4" />
-         <feOffset dx="8" dy="8" />
-         <feMerge>
-           <feMergeNode />
-           <feMergeNode in="SourceGraphic" />
-         </feMerge>
-      </filter>
-      <filter id="dropShadow-circles">
-         <feGaussianBlur in="SourceAlpha" stdDeviation="8" />
          <feOffset dx="8" dy="8" />
          <feMerge>
            <feMergeNode />
@@ -89,17 +82,15 @@
         <path class="svg-graph__axis" d="M20.7,32.3c4.3-1.8,4.3-8.8,4.3-8.8s0,7,4.3,8.8"/>
         <path class="svg-graph__axis" d="M968.3,470.7c1.8,4.3,8.8,4.3,8.8,4.3s-7,0-8.8,4.3"/>
         <g class="svg-graph__text text">
-          <text x="145" y="460" class="text__item">LK-1</text>
-          <text x="820" y="460" class="text__item">LK-2</text>
+          <text x="130" y="400" class="text__item">LK-1</text>
+          <text x="810" y="400" class="text__item">LK-2</text>
         </g>
         <g class="function">
           <polyline class="svg-graph__function" points="150,255 825,255"/>
-          <circle cx="500" cy="255" r="10" class="watersherd" />
-          <circle cx="150" cy="255" r="20" class="LK LK-1" />
-          <circle cx="825" cy="255" r="20" class="LK LK-2" />
-          <g class="function__interp">
-            
-          </g>
+          <circle cx="500" cy="255" r="10" class="watershed"><title></title></circle>
+          <circle cx="150" cy="255" r="20" class="LK LK-1"><title></title></circle>
+          <circle cx="825" cy="255" r="20" class="LK LK-2"><title></title></circle>
+          <g class="function__interp"></g>
         </g>
       </g>
     </svg>
