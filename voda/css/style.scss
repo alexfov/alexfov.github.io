@@ -24,7 +24,7 @@ main{
   transition: 0.4s;
 
   &_folded{
-    height: 32px;
+    height: 35px;
   }
 
   &_folded .svg-graph{
@@ -37,7 +37,7 @@ main{
     height: $width;
     position: absolute;
     right: 20px;
-    top: 5px;
+    top: 7px;
     cursor: pointer;
     transition: 0.3s;
 
@@ -65,6 +65,12 @@ main{
       border-bottom: 3px solid #000;
       transform: translateY(2px) rotateZ(45deg);
     }
+  }
+  &__calculator{
+    position: absolute;
+    top: 5px;
+    right: 55px;
+    cursor: pointer;
   }
 }
 

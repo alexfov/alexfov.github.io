@@ -26,6 +26,7 @@ const accuracy_el = $('.accuracy');
 const interp = $('.interp');
 const interp_container = $('.function__interp');
 const circle = new MoveSVG(document.querySelector('.LK-2'));
+const depth = $('#depth');
 
 $('input, select').on('input', function (evt) {
   $('.log').html('')
@@ -39,8 +40,10 @@ $('input, select').on('input', function (evt) {
   });
   
   if(ready){
+    const lk_1_val = +lk_1.val() + depth.val() / 100;
+    const lk_2_val = +lk_2.val() + depth.val() / 100;
     interp_container.html(''); //удаление интерполированных точек SVG
-    const excess = lk_1.val() - lk_2.val(); //разница высот между колодцами
+    const excess = lk_1_val - lk_2_val; //разница высот между колодцами
     const xScale = 675 / distance.val(); //масштаб
 
     let direction = 0; //направление смещения колодца
@@ -65,7 +68,7 @@ $('input, select').on('input', function (evt) {
 
     //если существующий уклон больше искомого, то используем его
     let useIncline = incline.val() > cur_incline ? incline.val() : cur_incline;
-    let watershed = dist1 * useIncline / 1000 + +lk_1.val(); //отметка водораздела
+    let watershed = dist1 * useIncline / 1000 + +lk_1_val; //отметка водораздела
     let watershedYpos = 205 - 20 * direction; //Высота водор. на СВГ
     const watershed_xPos = xScale * dist1; // положение водораздела в свг
     //добавить текст с отметкой для водораздела, если есть.
@@ -73,7 +76,7 @@ $('input, select').on('input', function (evt) {
       const watershed_text = createSVG('text', 150 + watershed_xPos, watershedYpos, watershed);
       interp_container[0].appendChild(watershed_text);
     }
-    
+
     //---------------------интерполяция------------------------
     $('.result-interp').html(''); //очистка таблиц с интерполяцией
     let interp_data =  ''; // таблица интерполяции
@@ -86,7 +89,7 @@ $('input, select').on('input', function (evt) {
       interp_data += `<tr><th colspan=3>LK-${ind + 1}</th></tr>`;
       //тело таблицы
       for (let i = 1; i < count; i++) {
-        let interp_mark = ind === 0 ? +lk_1.val() + dist * i * useIncline / 1000 : +lk_2.val() + dist * i * useIncline / 1000;
+        let interp_mark = ind === 0 ? +lk_1_val + dist * i * useIncline / 1000 : +lk_2_val + dist * i * useIncline / 1000;
         interp_data += 
         `<tr>
           <td>${i}</td>
@@ -132,8 +135,8 @@ $('input, select').on('input', function (evt) {
     //---------------------конец отрисовки таблицы--------------------------
 
     //---------------------перемещение водораздела--------------------------
-    const lk_1_text_mark = createSVG('text', 150, 255, lk_1.val());
-    const lk_2_text_mark = createSVG('text', 825, circle.y, lk_2.val());
+    const lk_1_text_mark = createSVG('text', 150, 255, lk_1_val);
+    const lk_2_text_mark = createSVG('text', 825, circle.y, lk_2_val);
     interp_container[0].appendChild(lk_1_text_mark);
     interp_container[0].appendChild(lk_2_text_mark);
 

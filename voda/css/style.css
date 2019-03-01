@@ -22,7 +22,7 @@ main {
   -webkit-transition: 0.4s;
   transition: 0.4s; }
   .svg-container_folded {
-    height: 32px; }
+    height: 35px; }
   .svg-container_folded .svg-graph {
     display: none; }
   .svg-container__fold {
@@ -30,7 +30,7 @@ main {
     height: 20px;
     position: absolute;
     right: 20px;
-    top: 5px;
+    top: 7px;
     cursor: pointer;
     -webkit-transition: 0.3s;
     transition: 0.3s; }
@@ -53,6 +53,11 @@ main {
       border-bottom: 3px solid #000;
       -webkit-transform: translateY(2px) rotateZ(45deg);
               transform: translateY(2px) rotateZ(45deg); }
+  .svg-container__calculator {
+    position: absolute;
+    top: 5px;
+    right: 55px;
+    cursor: pointer; }
 
 .svg-graph__function {
   fill: none;

@@ -23,9 +23,9 @@
           <input type="number" name="LK-2" id="LK-2" step="0.01" class="LK-data LK-data__2">
           <label for="LK-2">2</label>
         </div>
-        <div class="voda-form__LK voda-form__LK-2 float-left">
-          <input type="number" name="depth" id="depth" step="0.5" value="5" class="depth">
+        <div class="voda-form__depth float-right">
           <label for="depth">а/б</label>
+          <input type="number" name="depth" id="depth" step="0.5" value="5" class="voda-form__depth">
         </div>
     </fieldset>
     <fieldset class="voda-form__fieldset">
@@ -55,6 +55,7 @@
   </form>
   <div class="svg-container">
     <div class="svg-container__fold"></div>
+    <div class="svg-container__calculator"><img src="img/calculator.svg" alt=""></div>
     <svg class="svg-graph" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500">
        <filter id="dropShadow">
          <feGaussianBlur in="SourceAlpha" stdDeviation="4" />
