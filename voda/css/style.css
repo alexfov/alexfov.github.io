@@ -68,7 +68,7 @@ main {
 
 .text__item {
   fill: #000;
-  font-size: 1.3em; }
+  font-size: 1.8em; }
 
 .LK, .watershed, .circle_interp {
   fill: wheat;
@@ -80,9 +80,6 @@ main {
 
 .circle_interp {
   fill: orangered; }
-
-title:before {
-  content: attr(title); }
 
 .voda-form {
   -webkit-box-sizing: border-box;
