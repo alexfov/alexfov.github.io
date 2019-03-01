@@ -81,6 +81,9 @@ main {
 .circle_interp {
   fill: orangered; }
 
+title:before {
+  content: attr(title); }
+
 .voda-form {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;

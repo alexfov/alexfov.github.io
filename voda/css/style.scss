@@ -105,6 +105,10 @@ main{
   fill: orangered;
 }
 
+title:before{
+  content: attr(title);
+}
+
 .voda-form{
   box-sizing: border-box;
   margin: 0 auto;

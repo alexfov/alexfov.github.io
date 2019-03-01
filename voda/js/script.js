@@ -86,9 +86,11 @@ $('input, select').on('input', function (evt) {
     let watershed = dist1 * useIncline / 1000 + +lk_1.val(); //отметка водораздела
     let watershedYpos = 205 - 20 * direction; //Высота водор. на СВГ
     const watershed_xPos = xScale * dist1; // положение водораздела в свг
-    $('.watershed title').text((Math.round(watershed * accuracy) / accuracy).toFixed(accuracy.length - 1));
-    $('.LK-1 title').text((Math.round(lk_1.val() * accuracy) / accuracy).toFixed(accuracy.length - 1));
-    $('.LK-2 title').text((Math.round(lk_2.val() * accuracy) / accuracy).toFixed(accuracy.length - 1));
+    // $('.watershed title').text((Math.round(watershed * accuracy) / accuracy).toFixed(accuracy.length - 1));
+    $('.watershed').attr('title', (Math.round(watershed * accuracy) / accuracy).toFixed(accuracy.length - 1));
+    $('.LK-1').attr('title', (Math.round(lk_1.val() * accuracy) / accuracy).toFixed(accuracy.length - 1));
+    $('.LK-2').attr('title', (Math.round(lk_2.val() * accuracy) / accuracy).toFixed(accuracy.length - 1));
+
     //---------------------интерполяция------------------------
     $('.result-interp').html(''); //очистка таблиц с интерполяцией
     let interp_data =  ''; // таблица интерполяции
@@ -109,9 +111,7 @@ $('input, select').on('input', function (evt) {
         </tr>`;
 
         const circle_interp = createSVG();
-        const title = createSVG('title');
-        title.textContent = (Math.round(interp_mark * accuracy) / accuracy).toFixed(accuracy.length - 1);
-        circle_interp.appendChild(title);
+        circle_interp.setAttribute('title', (Math.round(interp_mark * accuracy) / accuracy).toFixed(accuracy.length - 1));
         if(ind === 0){
           if(dist1 === distance.val()) watershedYpos = 200;
           let interpYPos = 255 - (255 - watershedYpos) / count * i;
@@ -174,4 +174,6 @@ function createSVG(tag = 'circle'){
 $('.svg-container__fold').on('click', function (evt) {
   this.classList.toggle('svg-container__fold_active');
   this.parentNode.classList.toggle('svg-container_folded');
-})
+});
+
+$(document).tooltip();
