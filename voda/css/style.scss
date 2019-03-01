@@ -88,7 +88,7 @@ main{
 
 .text__item{
 	fill: #000;
-	font-size: 1.3em;
+	font-size: 2.2em;
 }
 
 .LK, .watershed, .circle_interp{
@@ -103,10 +103,6 @@ main{
 
 .circle_interp{
   fill: orangered;
-}
-
-title:before{
-  content: attr(title);
 }
 
 .voda-form{

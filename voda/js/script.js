@@ -43,14 +43,12 @@ const interp = $('.interp');
 const interp_container = $('.function__interp');
 const circle = new MoveSVG(document.querySelector('.LK-2'));
 
-$('#interp').on('input', function (evt) {
-  if(this.value < 0.5) this.value = 0.5;
-});
-
 $('input, select').on('input', function (evt) {
   $('.log').html('')
   let ready = 1;
   const accuracy = accuracy_el.val();
+
+  if($('#interp').val() < 0.5) return; //не считать, е сли шаг итерп. меньше 0.5
 
   $('input').each(function () {
     if(!$(this).val()) ready = 0;
