@@ -165,7 +165,7 @@ $('body').on('click', function (evt) {
 function createSVG(tag = 'circle'){
   const elem = document.createElementNS('http://www.w3.org/2000/svg', tag);
   if(tag === 'circle'){
-    elem.setAttribute('r', '10');
+    elem.setAttribute('r', '15');
     elem.classList.add('circle_interp')
   }
   return elem;
