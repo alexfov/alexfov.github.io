@@ -1,3 +1,5 @@
+$('.log').text(window.innerWidth)
+
 class MoveSVG{
   constructor(node){
     this.x = +node.getAttribute('cx');
