@@ -6,7 +6,8 @@ const players = {
 	AlexFov: 313885294,
 	Doctor: 254920273,
 	Megabit: 84502939,
-	BloOdTerrOr: 120491980
+	BloOdTerrOr: 120491980,
+	XaKoH: 86685819
 };
 
 const monthes = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
@@ -43,20 +44,15 @@ class PlayerStats{
 }
 
 function isPlayerWin (game) {
-	if(game['radiant_win'] === true && game['player_slot'] < 6) return true;
-	if(game['radiant_win'] === false && game['player_slot'] > 6) return true;
+	if(game['radiant_win'] && game['player_slot'] < 6) return true;
+	if(!game['radiant_win'] && game['player_slot'] > 6) return true;
 	return false;
 }
 
 function printHeroName (game){
 	let heroId = game['hero_id'];
-	var index = 0;
-
-	if(heroId <= 23) index = heroId - 1;
-	else if(heroId <= 114) index = heroId - 2;
-	else index = heroId - 6;
-
-	return heroes[index]['localized_name'];
+	for (const hero of heroes)
+		if(hero.id == heroId) return hero.localized_name;
 }
 
 function convertDate (date){
@@ -166,7 +162,6 @@ function rebuildGraph (svg_class, new_points, speed){
   function draw (i, progress) {
     new_nodes[i][1] = polyline_nodes[i][1];
     new_nodes[i][1] -= ~~(difference[i] * progress);
-    console.log(new_nodes[i][1])
     polyline.setAttribute('points', new_nodes);
     circles[i].setAttribute('cy', new_nodes[i][1]);
   }
