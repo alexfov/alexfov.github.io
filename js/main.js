@@ -7,7 +7,7 @@ for (let key in players){
 	request.send();
 	request.onreadystatechange = function(){
 		if(request.readyState != 4) return;
-		localStorage.setItem(`games_${key}`, request.responseText);
+		//localStorage.setItem(`games_${key}`, request.responseText);
 		games[key] = JSON.parse(request.responseText);
 		if(Object.keys(games).length === Object.keys(players).length && isHeroesRequestDone){
 			drawTable(31, today.getMonth() + 1, today.getFullYear());
@@ -26,7 +26,7 @@ var isHeroesRequestDone = false;
 
 	request.onreadystatechange = function(){
 		if(request.readyState != 4) return;
-		localStorage.setItem(`heroes`, request.responseText);
+		//localStorage.setItem(`heroes`, request.responseText);
 		heroes = JSON.parse(request.responseText);
 		//make hero img Map
 		for(let hero in heroes){
