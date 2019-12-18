@@ -7,7 +7,6 @@ const players = {
 	Doctor: 254920273,
 	Megabit: 84502939,
 	BloOdTerrOr: 120491980,
-	XaKoH: 150419909,
 	"AlexFov 2kSmurf": 153901833,
 };
 
