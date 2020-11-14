@@ -29,6 +29,7 @@ body {
 .main-menu__sun {
   width: 100%;
   top: 0;
+  left: 0;
   height: auto;
   cursor: pointer; }
   .main-menu__sun_rotate {
@@ -237,6 +238,18 @@ body {
     -webkit-transition: 0.3s;
     transition: 0.3s;
     position: relative; }
+    .test__img-container:nth-child(1) img{
+      transform-origin: 0 0;
+    }
+    .test__img-container:nth-child(2) img{
+      transform-origin: 100% 0;
+    }
+    .test__img-container:nth-child(3) img{
+      transform-origin: 0 100%;
+    }
+    .test__img-container:nth-child(4) img{
+      transform-origin: 100% 100%;
+    }
     .test__img_active {
       -webkit-animation-name: scale;
               animation-name: scale;
