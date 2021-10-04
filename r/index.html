@@ -8,11 +8,12 @@
   <script type="text/javascript">
 		console.log(window.location)
     const url = "www.alexfov.github.io/r"
+    const deeplink = "smena://"
     const curHref = window.location.href
     const shouldRedirect = curHref.includes(url)
 		if (shouldRedirect) {
       const phone = curHref.replace(url, "")
-		   window.location.href = 'http://www.alexfov.github.io/' + phone; 
+		   window.location.href = deeplink + phone; 
 		}
 	</script>
 </head>
