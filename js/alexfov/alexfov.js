@@ -1,6 +1,6 @@
 'use strict';
 
-const player = ['AlexFov', 313885294];
+const player = ['AlexFov', 353648896];
 const games = JSON.parse(localStorage.getItem(`games_${player[0]}`)) || player_request('player');
 const heroes = JSON.parse(localStorage.getItem(`heroes`)) || player_request();
 

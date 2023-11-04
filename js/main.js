@@ -12,7 +12,7 @@ for (let key in players){
 		if(Object.keys(games).length === Object.keys(players).length && isHeroesRequestDone){
 			drawTable(31, today.getMonth() + 1, today.getFullYear());
 		}
-	} 
+	}
 }
 
 //--------------HEROES ---------------//
@@ -80,7 +80,7 @@ function drawTable (x, month, year){
 			if(i === 0){
 				row = addElement('tr', '', 'table__row');
 				table_body.appendChild(row);
-			} 
+			}
 			//dates
 			cell = addElement('td', '', 'table__cell');
 			//set player names
@@ -145,13 +145,13 @@ function drawTable (x, month, year){
 					let popup_link = addElement('a');
 					popup_link.setAttribute('href', `https://www.dotabuff.com/matches/${arr[i]['id']}`);
 					popup_item.appendChild(popup_link);
-					popup_link.innerHTML = arr[i].stats;			
+					popup_link.innerHTML = arr[i].stats;
 				}
 
 				function drawWinratePopup (obj, popup) {
-					for(let hero in obj){
-						let wins = obj[hero][0];
-						let loses = obj[hero][1];
+					const arr = Object.entries(obj).sort((a, b) => a[1][0] + a[1][1] < b[1][0] + b[1][1] ? 1 : -1)
+					for(let [hero, stats] of arr){
+						let [wins, loses] = stats;
 						let winrate = ~~(wins * 100 / (wins + loses));
 						let cell_color = 'table__popup-item_win';
 						if (winrate < 50) cell_color = 'table__popup-item_lose';
@@ -200,8 +200,10 @@ function drawSelectYear (){
 	}
 }
 
+let month = document.querySelector('#month')
+month.value = today.getMonth() + 1
+
 drawSelectYear();
-// drawTable(31, today.getMonth() + 1, today.getFullYear());
 
 let btn = document.querySelector('.btn');
 

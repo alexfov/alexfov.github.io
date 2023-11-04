@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>Doctar</title>
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/player/player.css">
+	<script src="js/common_functions.js"></script>
+</head>
+<body>
+	<header class="page-header">
+		<div class="container">
+			<div class="row">
+				<div class="col-11">
+					<nav class="main-nav">
+						<ul class="main-menu nav">
+							<li class="main-menu__item main-menu__item_bold"><a href="https://www.dotabuff.com/" class="main-menu__link">DOTABUFF</a></li>
+							<li class="main-menu__item"><a href="neeeeerf.html" class="main-menu__link">Neeeeeef</a></li>
+							<li class="main-menu__item"><a href="johngalt.html" class="main-menu__link">JohnGalt</a></li>
+							<li class="main-menu__item"><a href="alexfov.html" class="main-menu__link">AlexFov</a></li>
+							<li class="main-menu__item"><a href="bloodterror.html" class="main-menu__link">BloOdTerrOr</a></li>
+							<li class="main-menu__item"><a href="megabit.html" class="main-menu__link">Megabit</a></li>
+							<li class="main-menu__item"><a href="roman.html" class="main-menu__link">Roman</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="col-1">
+					<a href="index.html"><img src="img/cancer.svg" alt="logo" class="page-header__logo"></a>
+				</div>
+			</div>
+		</div>
+	</header>
+	<section class="content">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="graph-btns">
+							<button class="graph-btns__btn graph-btns__games active btn">По играм</button>
+							<button class="graph-btns__btn graph-btns__wr btn">По винрейту</button>
+					</div>
+					<div class="svg-container">
+						<svg class="svg-graph" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 500">
+							 <filter id="dropShadow">
+						     <feGaussianBlur in="SourceAlpha" stdDeviation="4" />
+						     <feOffset dx="8" dy="8" />
+						     <feMerge>
+						       <feMergeNode />
+						       <feMergeNode in="SourceGraphic" />
+						     </feMerge>
+						  </filter>
+						  <filter id="dropShadow-circles">
+						     <feGaussianBlur in="SourceAlpha" stdDeviation="8" />
+						     <feOffset dx="8" dy="8" />
+						     <feMerge>
+						       <feMergeNode />
+						       <feMergeNode in="SourceGraphic" />
+						     </feMerge>
+						  </filter>
+							<g class="svg-graph__shadow">
+								<line class="svg-graph__axis" x1="25" y1="25" x2="25" y2="475" />
+								<line class="svg-graph__axis" x1="25" y1="475" x2="975" y2="475" />
+								<path class="svg-graph__axis" d="M20.7,32.3c4.3-1.8,4.3-8.8,4.3-8.8s0,7,4.3,8.8"/>
+								<path class="svg-graph__axis" d="M968.3,470.7c1.8,4.3,8.8,4.3,8.8,4.3s-7,0-8.8,4.3"/>
+								<g class="svg-graph__text text">
+									<text x="30" y="30" class="text__item text__item_max"></text>
+									<text x="30" y="140" class="text__item"></text>
+									<text x="30" y="250" class="text__item"></text>
+									<text x="30" y="360" class="text__item"></text>
+									<text x="30" y="470" class="text__item"></text>
+								</g>
+								<g class="svg-graph__text-monthes text-monthes">
+									<text x="70" y="495" class="text__monthes-item">12</text>
+									<text x="145" y="495" class="text__monthes-item">11</text>
+									<text x="220" y="495" class="text__monthes-item">10</text>
+									<text x="295" y="495" class="text__monthes-item">9</text>
+									<text x="370" y="495" class="text__monthes-item">8</text>
+									<text x="445" y="495" class="text__monthes-item">7</text>
+									<text x="520" y="495" class="text__monthes-item">6</text>
+									<text x="595" y="495" class="text__monthes-item">5</text>
+									<text x="670" y="495" class="text__monthes-item">4</text>
+									<text x="745" y="495" class="text__monthes-item">3</text>
+									<text x="820" y="495" class="text__monthes-item">2</text>
+									<text x="895" y="495" class="text__monthes-item">1</text>
+									<text x="935" y="495" class="text__monthes-item">месяц</text>
+								</g>
+							  <polyline class="svg-graph__function" points=""/>
+							 </g>
+							 <g class="svg-graph__lines">
+							  <line class="svg-graph__line" x1="15" y1="35" x2="985" y2="35" />
+							  <line class="svg-graph__line svg-graph__line_wr" x1="15" y1="0" x2="985" y2="0" />
+								<line class="svg-graph__line" x1="15" y1="145" x2="985" y2="145" />
+								<line class="svg-graph__line" x1="15" y1="255" x2="985" y2="255" />
+								<line class="svg-graph__line" x1="15" y1="365" x2="985" y2="365" />
+								<line class="svg-graph__line" x1="75" y1="15" x2="75" y2="485" />
+								<line class="svg-graph__line" x1="150" y1="15" x2="150" y2="485" />
+								<line class="svg-graph__line" x1="225" y1="15" x2="225" y2="485" />
+								<line class="svg-graph__line" x1="300" y1="15" x2="300" y2="485" />
+								<line class="svg-graph__line" x1="375" y1="15" x2="375" y2="485" />
+								<line class="svg-graph__line" x1="450" y1="15" x2="450" y2="485" />
+								<line class="svg-graph__line" x1="525" y1="15" x2="525" y2="485" />
+								<line class="svg-graph__line" x1="600" y1="15" x2="600" y2="485" />
+								<line class="svg-graph__line" x1="675" y1="15" x2="675" y2="485" />
+								<line class="svg-graph__line" x1="750" y1="15" x2="750" y2="485" />
+								<line class="svg-graph__line" x1="825" y1="15" x2="825" y2="485" />
+								<line class="svg-graph__line" x1="900" y1="15" x2="900" y2="485" />
+								</g>
+								<g class="svg-graph__circles circles"></g>
+						</svg>
+						<div class="svg-popup">
+							<table class="popup-table">
+								<tr class="popup-table__row popup-table__row_date">
+									<th class="popup-table__cell popup-table__set-data" colspan="2">ДАТА</th>
+								</tr>
+								<tr class="popup-table__row popup-table__row_games">
+									<td class="popup-table__cell">Игр сыграно:</td>
+									<td class="popup-table__cell popup-table__set-data"></td>
+								</tr>
+								<tr class="popup-table__row popup-table__row_wr">
+									<td class="popup-table__cell">Винрейт:</td>
+									<td class="popup-table__cell popup-table__set-data"></td>
+								</tr>
+								<tr class="popup-table__row popup-table__row_favourite-hero">
+									<td class="popup-table__cell">Любимый герой:</td>
+									<td class="popup-table__cell popup-table__set-data"></td>
+								</tr>
+								<tr class="popup-table__row popup-table__row_best-hero">
+									<td class="popup-table__cell">Лучший герой:</td>
+									<td class="popup-table__cell  popup-table__set-data"></td>
+								</tr>
+								<tr class="popup-table__row popup-table__row_worst-hero">
+									<td class="popup-table__cell">Худший герой:</td>
+									<td class="popup-table__cell popup-table__set-data"></td>
+								</tr>
+							</table>
+							<svg class="svg-popup__lip" viewBox="0 0 26 18.44" xmlns="http://www.w3.org/2000/svg">
+								<path class="svg-popup__lip-path" d="M25.56-0.27c0,0-7.25,13.52-25,18c0-7.81,0-18,0-18"/>
+							</svg>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<svg class="wave-pattern" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1922 96">
+			<title>footer-wave</title>
+			<path d="M1920.5,68.5s-300.07,28.28-180-68C1669.21,8,1668,68.5,751,96.5c-198.47-21.88-427-21-497.5-18-156.72-1.5-255,18-255,18h1922"
+				transform="translate(1.5 -0.5)"/>
+		</svg>
+	</section>
+	<footer class="page-footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-3">
+					<img src="img/cancer.svg" alt="logo" class="page-footer__logo">
+				</div>
+				<div class="col-2">
+					<nav class="footer-nav">
+						<ul class="footer-menu nav flex-column">
+							<li class="footer-menu__item main-menu__item_bold pl-0"><a href="https://www.dotabuff.com/" class="main-menu__link">DOTABUFF</a></li>
+							<li class="footer-menu__item"><a href="https://www.dotabuff.com/players/102756891" class="main-menu__link">Neeeeeef</a></li>
+							<li class="footer-menu__item"><a href="https://www.dotabuff.com/players/41528404" class="main-menu__link">JohnGalt</a></li>
+							<li class="footer-menu__item"><a href="https://www.dotabuff.com/players/313885294" class="main-menu__link">AlexFov</a></li>
+							<li class="footer-menu__item"><a href="https://www.dotabuff.com/players/120491980" class="main-menu__link">BloOdTerrOr</a></li>
+							<li class="footer-menu__item"><a href="https://www.dotabuff.com/players/84502939" class="main-menu__link">Megabit</a></li>
+							<li class="footer-menu__item"><a href="https://www.dotabuff.com/players/127761457" class="main-menu__link">Roman</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<script src="js/roman/roman.js"></script>
+	<script src="js/draw_graph.js"></script>
+</body>
+</html>

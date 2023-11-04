@@ -3,11 +3,9 @@
 const players = {
 	Neeeeeerf: 102756891,
 	JohnGalt: 41528404,
-	AlexFov: 313885294,
-	Doctor: 254920273,
 	Megabit: 84502939,
 	BloOdTerrOr: 120491980,
-	"AlexFov2": 353648896,
+	AlexFov: 353648896,
 	Roman: 127761457,
 };
 
@@ -46,8 +44,8 @@ class PlayerStats{
 
 function isPlayerWin (game) {
 	if(game['radiant_win'] && game['player_slot'] < 6) return true;
-	if(!game['radiant_win'] && game['player_slot'] > 6) return true;
-	return false;
+	return !game['radiant_win'] && game['player_slot'] > 6;
+
 }
 
 function printHeroName (game){
@@ -130,7 +128,7 @@ function rebuildGraph (svg_class, new_points, speed){
   else{
     polyline_nodes = polyline_nodes.match(/\d+,\d+/g).map(x => x = x.split(','));;
   }
-  
+
   let new_points_max = new_points.reduce((a,b) =>{
     if(a < b) a = b;
     return Math.ceil(a / 10) * 10;
@@ -156,7 +154,7 @@ function rebuildGraph (svg_class, new_points, speed){
 
   if(svg.querySelectorAll('.svg-graph__polyline__point').length === 0)
     drawPoints(polyline_nodes);
-  
+
   let circles = svg.querySelectorAll('.svg-graph__polyline__point');
 
   var new_nodes = polyline_nodes.map(x => [...x]);
@@ -214,7 +212,7 @@ function foldArray (arr){
 		if(month !== prev_month){
 			index_end = i;
 			obj.push(arr.slice(index_start, index_end));
-			index_start = i; 
+			index_start = i;
 			if(obj.length === 12) break;
 		}
 		prev_month = month;
@@ -226,8 +224,8 @@ class PopupData{
 	constructor(arr){
 		this.games = arr.map(x => x.length);
 		this.wr = arr
-								.map((x, i) => 
-															x.filter((x) => isPlayerWin(x)).length 
+								.map((x, i) =>
+															x.filter((x) => isPlayerWin(x)).length
 															/ this.games[i] * 100)
 								.map(x => ~~(x * 10) /10);
 
