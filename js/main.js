@@ -30,7 +30,7 @@ var isHeroesRequestDone = false;
 		heroes = JSON.parse(request.responseText);
 		//make hero img Map
 		for(let hero in heroes){
-			heroes_img[heroes[hero]['localized_name']] = `https://api.opendota.com/apps/dota2/images/heroes/${heroes[hero].name.replace('npc_dota_hero_', '')}_full.png?`
+			heroes_img[heroes[hero]['localized_name']] = `https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/${heroes[hero].name.replace('npc_dota_hero_', '')}.png?`
 		}
 		isHeroesRequestDone = true;
 	}
@@ -201,7 +201,9 @@ function drawSelectYear (){
 }
 
 let month = document.querySelector('#month')
-month.value = today.getMonth() + 1
+const monthNumber = String(today.getMonth() + 1)
+const monthTwoDigits = monthNumber.length < 2 ? "0" + monthNumber : monthNumber
+month.value = monthTwoDigits
 
 drawSelectYear();
 
