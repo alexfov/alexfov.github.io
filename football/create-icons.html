@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание иконок</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        canvas {
+            border: 1px solid #ccc;
+            margin: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Создание иконок для PWA</h1>
+    <p>Загрузите оригинальное изображение и скачайте иконки нужных размеров:</p>
+    
+    <input type="file" id="fileInput" accept="image/*">
+    
+    <div>
+        <canvas id="canvas192" width="192" height="192"></canvas>
+        <canvas id="canvas512" width="512" height="512"></canvas>
+    </div>
+    
+    <div>
+        <button onclick="downloadIcon(192)">Скачать icon-192.png</button>
+        <button onclick="downloadIcon(512)">Скачать icon-512.png</button>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const canvas192 = document.getElementById('canvas192');
+        const canvas512 = document.getElementById('canvas512');
+        const ctx192 = canvas192.getContext('2d');
+        const ctx512 = canvas512.getContext('2d');
+
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const img = new Image();
+                img.onload = () => {
+                    // Рисуем на canvas 192x192
+                    ctx192.fillStyle = '#000000';
+                    ctx192.fillRect(0, 0, 192, 192);
+                    ctx192.drawImage(img, 0, 0, 192, 192);
+                    
+                    // Рисуем на canvas 512x512
+                    ctx512.fillStyle = '#000000';
+                    ctx512.fillRect(0, 0, 512, 512);
+                    ctx512.drawImage(img, 0, 0, 512, 512);
+                };
+                img.src = URL.createObjectURL(file);
+            }
+        });
+
+        function downloadIcon(size) {
+            const canvas = size === 192 ? canvas192 : canvas512;
+            const link = document.createElement('a');
+            link.download = `icon-${size}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+    </script>
+</body>
+</html>
