@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+  />
+  <title>WebView video test</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 16px;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f5f5f5;
+    }
+
+    h1 {
+      font-size: 18px;
+      margin: 0 0 12px;
+    }
+
+    p {
+      font-size: 14px;
+      color: #666;
+      margin: 0 0 16px;
+    }
+
+    video {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      display: block;
+      border-radius: 8px;
+      background: #000;
+    }
+  </style>
+</head>
+<body>
+  <h1>Тест inline video</h1>
+  <p>Видео 100×100. Должно играть на месте, без fullscreen.</p>
+
+  <video
+    controls
+    playsinline
+    webkit-playsinline
+    preload="metadata"
+  >
+    <source src="./1.webm" type="video/mp4" />
+    Ваш браузер не поддерживает video.
+  </video>
+</body>
+</html>
