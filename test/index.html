@@ -30,6 +30,23 @@
       margin: 0 0 16px;
     }
 
+    .videos {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .video-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .video-label {
+      font-size: 12px;
+      color: #444;
+    }
+
     video {
       width: 100px;
       height: 100px;
@@ -42,16 +59,34 @@
 </head>
 <body>
   <h1>Тест inline video</h1>
-  <p>Видео 100×100. Должно играть на месте, без fullscreen.</p>
+  <p>Оба видео 100×100. Должны играть на месте, без fullscreen.</p>
 
-  <video
-    controls
-    playsinline
-    webkit-playsinline
-    preload="metadata"
-  >
-    <source src="https://mdn.github.io/learning-area/html/multimedia-and-embedding/video-and-audio-content/rabbit320.mp4" type="video/mp4" />
-    Ваш браузер не поддерживает video.
-  </video>
+  <div class="videos">
+    <div class="video-item">
+      <span class="video-label">Удалённое mp4</span>
+      <video
+        controls
+        playsinline
+        webkit-playsinline
+        preload="metadata"
+      >
+        <source src="https://mdn.github.io/learning-area/html/multimedia-and-embedding/video-and-audio-content/rabbit320.mp4" type="video/mp4" />
+        Ваш браузер не поддерживает video.
+      </video>
+    </div>
+
+    <div class="video-item">
+      <span class="video-label">Локальный webm</span>
+      <video
+        controls
+        playsinline
+        webkit-playsinline
+        preload="metadata"
+      >
+        <source src="1.webm" type="video/webm" />
+        Ваш браузер не поддерживает video.
+      </video>
+    </div>
+  </div>
 </body>
 </html>
